@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Post } from './src/components';
+import { StyleSheet,SafeAreaView } from 'react-native';
+import { FeedScreen } from './src/screens';
+import posts from "./assets/data/posts.json"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Post/>
-    </View>
+    <SafeAreaView style={styles.container}>
+     <FeedScreen feed={posts}/>
+    </SafeAreaView>
   );
 }
 
@@ -15,5 +16,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical:20
   },
 });
