@@ -1,1 +1,1 @@
-export { default as like } from './images/like.png'
+export { default as likeImage } from './images/like.png'
