@@ -1,12 +1,17 @@
-import { StyleSheet,SafeAreaView } from 'react-native';
-import { FeedScreen } from './src/screens';
+import { StyleSheet,SafeAreaView, StatusBar} from 'react-native';
+import { FeedScreen,CreatePostScreen } from './src/screens';
 import posts from "./assets/data/posts.json"
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaProvider style={styles.container}>
+    {/* <SafeAreaView style={styles.container}> */}
+       <StatusBar style="auto" />
+       <CreatePostScreen/>
      <FeedScreen feed={posts}/>
-    </SafeAreaView>
+    {/* </SafeAreaView> */}
+    </SafeAreaProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Text, View, Image } from "react-native";
 import { styles } from "./styles";
-import React from "react";
+import React, { useState } from "react";
 import {
   Entypo,
   AntDesign,
@@ -9,13 +9,14 @@ import {
 } from "@expo/vector-icons";
 import { likeImage } from "../../../assets/index";
 
-const Post = ({feed}) => {
+const Post = ({ feed }) => {
+  const [isLiked, setIsLiked] = useState(false)
   return (
     <View style={styles.container}>
       <View style={styles.post}>
         <View style={styles.header}>
           <Image
-            source={{uri:feed.User.image}}
+            source={{ uri: feed.User.image }}
             style={styles.profileImage}
           />
           <View>
@@ -29,12 +30,10 @@ const Post = ({feed}) => {
             style={styles.icon}
           />
         </View>
-        <Text style={styles.description}>
-         {feed.description}
-        </Text>
+        <Text style={styles.description}>{feed.description}</Text>
         <Image
           source={{
-            uri: feed.image
+            uri: feed.image,
           }}
           style={styles.image}
         />
@@ -43,14 +42,20 @@ const Post = ({feed}) => {
       <View style={styles.footer}>
         <View style={styles.statsRow}>
           <Image source={likeImage} style={styles.likeImageIcon} />
-          <Text style={styles.likeImagedBy}>Elon Musk and {feed.numberOfLikes} others</Text>
+          <Text style={styles.likeImagedBy}>
+            Elon Musk and {feed.numberOfLikes} others
+          </Text>
           <Text style={styles.shares}>{feed.numberOfShares} shares</Text>
         </View>
         {/* buttons */}
         <View style={styles.buttonRow}>
           <View style={styles.iconButton}>
-            <AntDesign name="like2" size={18} color="gray" />
-            <Text style={styles.iconButtonText}>Like</Text>
+            <AntDesign name="like2" size={18} 
+            onPress={() => setIsLiked(!isLiked)}
+            color={isLiked ? "royalblue":"gray"} />
+            <Text style={[styles.iconButtonText,
+            {color:isLiked ? "royalblue":"gray"}
+            ]}>Like</Text>
           </View>
           <View style={styles.iconButton}>
             <FontAwesome5 name="comment-alt" size={16} color="gray" />
@@ -71,4 +76,3 @@ const Post = ({feed}) => {
 };
 
 export default Post;
-
