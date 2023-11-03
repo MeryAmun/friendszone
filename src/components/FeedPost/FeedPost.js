@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image,Pressable } from "react-native";
 import { styles } from "./styles";
 import React, { useState } from "react";
 import {
@@ -8,10 +8,16 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { likeImage } from "../../../assets/index";
+import { useNavigation } from "@react-navigation/native";
 
 const Post = ({ feed }) => {
   const [isLiked, setIsLiked] = useState(false)
+  const navigation = useNavigation();
+  console.log(feed)
   return (
+    <Pressable onPress={() => navigation.navigate("Profile", {id:feed.User.id})}
+    style={styles.header}
+    >
     <View style={styles.container}>
       <View style={styles.post}>
         <View style={styles.header}>
@@ -43,7 +49,7 @@ const Post = ({ feed }) => {
         <View style={styles.statsRow}>
           <Image source={likeImage} style={styles.likeImageIcon} />
           <Text style={styles.likeImagedBy}>
-            Elon Musk and {feed.numberOfLikes} others
+            Elon Musk and {feed.numberOfLikes}  others
           </Text>
           <Text style={styles.shares}>{feed.numberOfShares} shares</Text>
         </View>
@@ -72,6 +78,7 @@ const Post = ({ feed }) => {
         </View>
       </View>
     </View>
+    </Pressable>
   );
 };
 

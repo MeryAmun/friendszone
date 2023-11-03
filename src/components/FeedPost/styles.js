@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
       flexDirection: "row",
       borderBottomWidth: StyleSheet.hairlineWidth,
       paddingVertical: 10,
+      gap:5,
       borderColor: "lightgray",
     },
     likeImageIcon: {
